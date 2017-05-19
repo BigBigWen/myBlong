@@ -18,15 +18,17 @@ redux就是把react项目的能用到的所有数据做个一个大整合，统�
     const mapStateToProps = state => ({
     data:state
     }) 
-    
+
     在render里引进来`const {data} = this.props`
     好了完工，可以在页面中放心大胆的用了
 + 数据的输出
- `const mapDispathToProps = (dispatch) => {
-     return{
-         loadState:() => dispatch(loadState())
-     }
- }`
+
+    const mapDispathToProps = (dispatch) => {
+        return{
+            loadState:() => dispatch(loadState())
+        }
+    }
+
  在页面中调用loadState方法，触发dispatch发出Action来一轮数据更新
 
  ### Action
@@ -34,26 +36,31 @@ redux就是把react项目的能用到的所有数据做个一个大整合，统�
  + Action 和Action Creator是不一样的。
  + Action是一个对象，必须有一个type属性，这个type就是action的名字，其他属性就可以随便定义写你的数据。在页面中通过dsipatch发出action对象，这种写法好麻烦，所以一般都用Action Creator.
  + 来个例子最明白
-   `export const loadState = () => dispatch => dispatch({
-       type:'LOAD_STATE'
-       data:'haha,I'm SiWen'
-   })`
+   
+    export const loadState = () => dispatch => dispatch({
+        type:'LOAD_STATE'
+        data:'haha,I'm SiWen'
+    })
+
 
 ### Reducer
 + Reducer 是一个函数，有当前state和action两个参数,返回一个新的state.一般要给一个初始state值
-`const initialState ={data:''haha,I'm SiWen''}
- const reducer = (state = initialState, action) => {
-     switch (action.type) {
-         case LOAD_STATE:
-         return {
-             ...state,
-             data:action.data
-         }
-         default:
+
+    const initialState ={data:''haha,I'm SiWen''}
+    const reducer = (state = initialState, action) => {
+        switch (action.type) {
+            case LOAD_STATE:
             return {
-                ...state
+                ...state,
+                data:action.data
             }
-     }
- }
-`
+            default:
+                return {
+                    ...state
+                }
+        }
+    }
+
 + 一般我们会有很多的reducer,来独立负责管理state的一部分，这时候就要用到combineReducers函数了，它把多个reducer合并成一个最终的reducer，格式为stateName：reducerName
+
+好了，根据我现在的理解就酱了
