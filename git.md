@@ -75,3 +75,19 @@ git reset –-hard origin/master
 git reset 057d  
 6.回退到上一次提交的状态，按照某一次的commit完全反向的进行一次commit  
 git revert HEAD  
+
+## git stash:
+使用场景：下拉远程代码和本地有冲突，需要把本地代码存放stash,一般流程如下1，2，3。之后会出现untracked文件，automerge文件，confilct文件，把confilct解决就好了
+1.git stash 
+把本地增改内容放进暂存区 
+2.git pull 
+拉取远程内容
+3.git stash apply
+恢复最新保存的工作进度
+4.git stash pop [--index] [<stash>]
+如果不使用任何参数，会恢复最新保存的工作进度，与apply不同，恢复的工作进度从存储的列表中清楚
+5.git stash list
+显示进度列表。此命令暗示了git stash可以多次保存工作进度，并用在恢复的时候选择
+6.git stash clear
+删除所有保存进度
+
