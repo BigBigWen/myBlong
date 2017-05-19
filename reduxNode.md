@@ -4,7 +4,7 @@ redux就是把react项目的能用到的所有数据做个一个大整合，统�
 
 ### store
 + 使用`createStore`生成store树，如果需要中间件,把中间件放到`applyMiddleware`方法中传给createStore
-+ `<Provider store></Provider>`根组件要嵌套在Provider组件中，才能使用`connect()`方法，而`connect()`方法能够获得 redux store
++ `<Provider store={store}></Provider>`根组件要嵌套在Provider组件中，并将创建的store作为prop传给Provider，才能使用`connect()`方法，而`connect()`方法能够获得 redux store。简单来说，只要是使用state的组件都是要放在Provider里面的，而且必须connect
 
 ### 页面组件
 #### components
@@ -30,6 +30,8 @@ redux就是把react项目的能用到的所有数据做个一个大整合，统�
     }
 
  在页面中调用loadState方法，触发dispatch发出Action来一轮数据更新
+ + 页面末尾要使用connect()方法 很重要哦一定不能少
+ `export default connect(mapStateToProps, mapDispatchToProps)(conponentName)
 
  ### Action
  + 我们页面中涉及到的数据处理，以及fetch都在action中处理
