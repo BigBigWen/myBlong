@@ -7,10 +7,10 @@ redux就是把react项目的能用到的所有数据做个一个大整合，统�
 + `<Provider store></Provider>`根组件要嵌套在Provider组件中，才能使用`connect()`方法，而`connect()`方法能够获得 redux store
 
 ### 页面组件
-####components
+#### components
 + 用来存放展示页面，可复用的页面
 + 相当于container的子组件
-####container
+#### container
 + 有操作数据的页面，需要逻辑处理的页面
 #### 页面数据的输入和输出
 + 数据的输入     
